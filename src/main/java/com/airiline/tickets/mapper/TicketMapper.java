@@ -3,6 +3,7 @@ package com.airiline.tickets.mapper;
 import com.airiline.tickets.domain.Ticket;
 import com.airiline.tickets.dto.CreateTicketRequest;
 import com.airiline.tickets.dto.CreateTicketResponse;
+import com.airiline.tickets.dto.GetTicketByIdResponse;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -12,6 +13,8 @@ public interface TicketMapper {
     TicketMapper INSTANCE = Mappers.getMapper(TicketMapper.class);
 
     Ticket createTicketRequestToTicket(CreateTicketRequest createTicketRequest);
+
+    GetTicketByIdResponse ticketToGetTicketByIdResponse(Ticket ticket);
 
     CreateTicketResponse ticketToCreateTicketResponse(Ticket ticket);
 }
