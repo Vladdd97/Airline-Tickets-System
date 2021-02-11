@@ -1,10 +1,10 @@
 package com.airiline.tickets.service.impl;
 
+import com.airiline.tickets.domain.Ticket;
 import com.airiline.tickets.dto.CreateTicketRequest;
 import com.airiline.tickets.dto.CreateTicketResponse;
-import com.airiline.tickets.dto.GetTicketByIdResponse;
+import com.airiline.tickets.dto.TicketResponse;
 import com.airiline.tickets.dto.UpdateTicketRequest;
-import com.airiline.tickets.dto.UpdateTicketResponse;
 import com.airiline.tickets.mapper.TicketMapper;
 import com.airiline.tickets.repository.TicketRepository;
 import com.airiline.tickets.service.TicketService;
@@ -24,14 +24,19 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public GetTicketByIdResponse getById(Long id) {
-        var ticket = ticketRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("not found"));
-        return TicketMapper.INSTANCE.ticketToGetTicketByIdResponse(ticket);
+    public TicketResponse getById(Long id) {
+        return TicketMapper.INSTANCE.ticketToTicketResponse(findById(id));
     }
 
     @Override
-    public UpdateTicketResponse update(UpdateTicketRequest ticketRequest) {
-        return null;
+    public TicketResponse update(UpdateTicketRequest ticketRequest, Long id) {
+        var ticket = findById(id);
+        TicketMapper.INSTANCE.updateTicketFromUpdateTicketRequest(ticketRequest, ticket);
+        return TicketMapper.INSTANCE.ticketToTicketResponse(ticketRepository.save(ticket));
+    }
+
+    private Ticket findById(Long id) {
+        return ticketRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("not found"));
     }
 }
