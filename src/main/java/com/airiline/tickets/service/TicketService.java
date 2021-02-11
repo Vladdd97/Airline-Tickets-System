@@ -11,4 +11,6 @@ public interface TicketService {
     TicketResponse getById(final Long id);
 
     TicketResponse update(UpdateTicketRequest ticketRequest, Long id);
+
+    void deleteById(Long id);
 }

@@ -35,6 +35,11 @@ public class TicketServiceImpl implements TicketService {
         return TicketMapper.INSTANCE.ticketToTicketResponse(ticketRepository.save(ticket));
     }
 
+    @Override
+    public void deleteById(Long id) {
+        ticketRepository.deleteById(id);
+    }
+
     private Ticket findById(Long id) {
         return ticketRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("not found"));
