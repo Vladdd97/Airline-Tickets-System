@@ -1,11 +1,9 @@
 package com.airiline.tickets.controller;
 
-import com.airiline.tickets.domain.Ticket;
 import com.airiline.tickets.dto.CreateTicketRequest;
 import com.airiline.tickets.dto.CreateTicketResponse;
-import com.airiline.tickets.dto.GetTicketByIdResponse;
+import com.airiline.tickets.dto.TicketResponse;
 import com.airiline.tickets.dto.UpdateTicketRequest;
-import com.airiline.tickets.dto.UpdateTicketResponse;
 import com.airiline.tickets.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,12 +29,12 @@ public class TicketController {
     }
 
     @GetMapping("/{ticketId}")
-    public ResponseEntity<GetTicketByIdResponse> getById(@PathVariable Long ticketId) {
+    public ResponseEntity<TicketResponse> getById(@PathVariable Long ticketId) {
         return ResponseEntity.status(HttpStatus.OK).body(ticketService.getById(ticketId));
     }
 
-//    @PatchMapping("/{ticketId}")
-//    public ResponseEntity<UpdateTicketResponse> update(@RequestBody UpdateTicketRequest ticket, @PathVariable Long ticketId) {
-//        return ResponseEntity.status(HttpStatus.CREATED).body(ticketService.save(ticket));
-//    }
+    @PatchMapping("/{ticketId}")
+    public ResponseEntity<TicketResponse> update(@RequestBody UpdateTicketRequest ticket, @PathVariable Long ticketId) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(ticketService.update(ticket, ticketId));
+    }
 }

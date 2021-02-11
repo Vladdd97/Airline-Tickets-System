@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class GetTicketByIdResponse {
+public class TicketResponse {
     private Long id;
     private Date createDate;
     private Date updateDate;
