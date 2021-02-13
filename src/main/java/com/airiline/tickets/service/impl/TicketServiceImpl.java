@@ -1,10 +1,11 @@
 package com.airiline.tickets.service.impl;
 
 import com.airiline.tickets.domain.Ticket;
-import com.airiline.tickets.dto.CreateTicketRequest;
-import com.airiline.tickets.dto.CreateTicketResponse;
-import com.airiline.tickets.dto.TicketResponse;
-import com.airiline.tickets.dto.UpdateTicketRequest;
+import com.airiline.tickets.dto.ticket.CreateTicketRequest;
+import com.airiline.tickets.dto.ticket.CreateTicketResponse;
+import com.airiline.tickets.dto.ticket.TicketResponse;
+import com.airiline.tickets.dto.ticket.UpdateTicketRequest;
+import com.airiline.tickets.exception.EntityNotFoundException;
 import com.airiline.tickets.mapper.TicketMapper;
 import com.airiline.tickets.repository.TicketRepository;
 import com.airiline.tickets.service.TicketService;
@@ -42,6 +43,6 @@ public class TicketServiceImpl implements TicketService {
 
     private Ticket findById(Long id) {
         return ticketRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Ticket not found by id: " + id));
     }
 }

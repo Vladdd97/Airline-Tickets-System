@@ -1,4 +1,4 @@
-package com.airiline.tickets.dto;
+package com.airiline.tickets.dto.ticket;
 
 import lombok.Getter;
 import lombok.Setter;

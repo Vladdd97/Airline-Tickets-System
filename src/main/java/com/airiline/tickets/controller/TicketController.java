@@ -1,9 +1,9 @@
 package com.airiline.tickets.controller;
 
-import com.airiline.tickets.dto.CreateTicketRequest;
-import com.airiline.tickets.dto.CreateTicketResponse;
-import com.airiline.tickets.dto.TicketResponse;
-import com.airiline.tickets.dto.UpdateTicketRequest;
+import com.airiline.tickets.dto.ticket.CreateTicketRequest;
+import com.airiline.tickets.dto.ticket.CreateTicketResponse;
+import com.airiline.tickets.dto.ticket.TicketResponse;
+import com.airiline.tickets.dto.ticket.UpdateTicketRequest;
 import com.airiline.tickets.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

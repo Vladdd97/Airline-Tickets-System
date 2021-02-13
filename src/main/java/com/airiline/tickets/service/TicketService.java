@@ -1,9 +1,9 @@
 package com.airiline.tickets.service;
 
-import com.airiline.tickets.dto.CreateTicketRequest;
-import com.airiline.tickets.dto.CreateTicketResponse;
-import com.airiline.tickets.dto.TicketResponse;
-import com.airiline.tickets.dto.UpdateTicketRequest;
+import com.airiline.tickets.dto.ticket.CreateTicketRequest;
+import com.airiline.tickets.dto.ticket.CreateTicketResponse;
+import com.airiline.tickets.dto.ticket.TicketResponse;
+import com.airiline.tickets.dto.ticket.UpdateTicketRequest;
 
 public interface TicketService {
     CreateTicketResponse save(CreateTicketRequest ticketRequest);
