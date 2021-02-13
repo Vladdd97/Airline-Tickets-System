@@ -1,10 +1,10 @@
 package com.airiline.tickets.mapper;
 
 import com.airiline.tickets.domain.Ticket;
-import com.airiline.tickets.dto.CreateTicketRequest;
-import com.airiline.tickets.dto.CreateTicketResponse;
-import com.airiline.tickets.dto.TicketResponse;
-import com.airiline.tickets.dto.UpdateTicketRequest;
+import com.airiline.tickets.dto.ticket.CreateTicketRequest;
+import com.airiline.tickets.dto.ticket.CreateTicketResponse;
+import com.airiline.tickets.dto.ticket.TicketResponse;
+import com.airiline.tickets.dto.ticket.UpdateTicketRequest;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
