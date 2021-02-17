@@ -24,4 +24,10 @@ public class FlightController {
     public ResponseEntity<FlightResponse> getById(@PathVariable Long flightId) {
         return ResponseEntity.ok(flightService.getById(flightId));
     }
+
+    @DeleteMapping("/{flightId}")
+    public ResponseEntity<Void> delete(@PathVariable Long flightId) {
+        flightService.deleteById(flightId);
+        return ResponseEntity.noContent().build();
+    }
 }

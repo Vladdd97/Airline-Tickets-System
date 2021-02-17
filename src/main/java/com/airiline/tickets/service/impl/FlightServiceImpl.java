@@ -27,6 +27,11 @@ public class FlightServiceImpl implements FlightService {
         return FlightMapper.INSTANCE.flightToFlightResponse(findById(id));
     }
 
+    @Override
+    public void deleteById(Long id) {
+        flightRepository.deleteById(id);
+    }
+
     private Flight findById(Long id) {
         return flightRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Flight not found by id: " + id));
