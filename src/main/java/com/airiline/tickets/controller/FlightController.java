@@ -2,6 +2,7 @@ package com.airiline.tickets.controller;
 
 import com.airiline.tickets.dto.flight.CreateFlightRequest;
 import com.airiline.tickets.dto.flight.CreateFlightResponse;
+import com.airiline.tickets.dto.flight.FlightResponse;
 import com.airiline.tickets.service.FlightService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,5 +18,10 @@ public class FlightController {
     @PostMapping
     public ResponseEntity<CreateFlightResponse> save(@RequestBody CreateFlightRequest flight){
         return ResponseEntity.status(HttpStatus.CREATED).body(flightService.save(flight));
+    }
+
+    @GetMapping("/{flightId}")
+    public ResponseEntity<FlightResponse> getById(@PathVariable Long flightId) {
+        return ResponseEntity.ok(flightService.getById(flightId));
     }
 }
