@@ -4,6 +4,7 @@ import com.airiline.tickets.domain.Flight;
 import com.airiline.tickets.dto.flight.CreateFlightRequest;
 import com.airiline.tickets.dto.flight.CreateFlightResponse;
 import com.airiline.tickets.dto.flight.FlightResponse;
+import com.airiline.tickets.dto.flight.UpdateFlightRequest;
 import com.airiline.tickets.exception.EntityNotFoundException;
 import com.airiline.tickets.mapper.FlightMapper;
 import com.airiline.tickets.repository.FlightRepository;
@@ -30,6 +31,14 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public void deleteById(Long id) {
         flightRepository.deleteById(id);
+    }
+
+    @Override
+    public FlightResponse update(Long flightId, UpdateFlightRequest flightRequest) {
+        var flight = findById(flightId);
+        FlightMapper.INSTANCE.updateFlightFromUpdateFlightRequest(flightRequest, flight);
+
+        return FlightMapper.INSTANCE.flightToFlightResponse(flightRepository.save(flight));
     }
 
     private Flight findById(Long id) {
