@@ -1,0 +1,44 @@
+{
+  "message": "accurate",
+  "cod": "200",
+  "count": 1,
+  "list": [
+    {
+      "id": 618426,
+      "name": "Chisinau",
+      "coord": {
+        "lat": 47.0056,
+        "lon": 28.8575
+      },
+      "main": {
+        "temp": 10,
+        "feels_like": 6.86,
+        "temp_min": 10,
+        "temp_max": 10,
+        "pressure": 1027,
+        "humidity": 57
+      },
+      "dt": 1614002953,
+      "wind": {
+        "speed": 2.06,
+        "deg": 240
+      },
+      "sys": {
+        "country": "MD"
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01d"
+        }
+      ]
+    }
+  ]
+}

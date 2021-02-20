@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class WeatherMapResponse {
+public class SearchWeatherDataResponse {
     private String message;
     private int cod;
     private int count;

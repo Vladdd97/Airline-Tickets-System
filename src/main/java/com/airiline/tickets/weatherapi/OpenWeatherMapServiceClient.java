@@ -1,7 +1,7 @@
 package com.airiline.tickets.weatherapi;
 
 import com.airiline.tickets.weatherapi.config.OpenWeatherMapServiceConfig;
-import com.airiline.tickets.weatherapi.dto.WeatherMapResponse;
+import com.airiline.tickets.weatherapi.dto.SearchWeatherDataResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -24,12 +24,15 @@ public class OpenWeatherMapServiceClient {
     }
 
 
-    public void searchWeatherData(String cityName) {
+    public SearchWeatherDataResponse searchWeatherData(String cityName) {
+        log.info(String.format("Search weather data by [%s] cityName", cityName));
+
         var response = restTemplate.getForObject(
                 String.format(config.getSearchWeatherDataUrl(), cityName),
-                WeatherMapResponse.class);
+                SearchWeatherDataResponse.class);
+        log.info(String.format("Weather data for [%s] city: %s", cityName, response));
 
-        System.out.println(response);
+        return response;
     }
 
 }

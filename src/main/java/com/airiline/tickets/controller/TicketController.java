@@ -5,7 +5,9 @@ import com.airiline.tickets.dto.ticket.CreateTicketResponse;
 import com.airiline.tickets.dto.ticket.TicketResponse;
 import com.airiline.tickets.dto.ticket.UpdateTicketRequest;
 import com.airiline.tickets.service.TicketService;
+import com.airiline.tickets.service.WeatherService;
 import com.airiline.tickets.weatherapi.OpenWeatherMapServiceClient;
+import com.airiline.tickets.weatherapi.dto.SearchWeatherDataResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +20,7 @@ public class TicketController {
 
     private final TicketService ticketService;
 
-    private final OpenWeatherMapServiceClient serviceClient;
+    private final WeatherService weatherService;
 
     @PostMapping
     public ResponseEntity<CreateTicketResponse> save(@RequestBody CreateTicketRequest ticket) {
@@ -42,8 +44,7 @@ public class TicketController {
     }
 
     @GetMapping("/test-weather/{city}")
-    public ResponseEntity<Void> testWeather(@PathVariable String city) {
-        serviceClient.searchWeatherData(city);
-        return null;
+    public ResponseEntity<SearchWeatherDataResponse> testWeather(@PathVariable String city) {
+        return ResponseEntity.status(HttpStatus.OK).body(weatherService.getWeatherByCityName(city));
     }
 }
