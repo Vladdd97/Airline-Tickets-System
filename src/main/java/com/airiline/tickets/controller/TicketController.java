@@ -5,9 +5,6 @@ import com.airiline.tickets.dto.ticket.CreateTicketResponse;
 import com.airiline.tickets.dto.ticket.TicketResponse;
 import com.airiline.tickets.dto.ticket.UpdateTicketRequest;
 import com.airiline.tickets.service.TicketService;
-import com.airiline.tickets.service.WeatherService;
-import com.airiline.tickets.weatherapi.OpenWeatherMapServiceClient;
-import com.airiline.tickets.weatherapi.dto.SearchWeatherDataResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,5 +37,4 @@ public class TicketController {
         ticketService.deleteById(ticketId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-
 }

@@ -34,7 +34,7 @@ public class WeatherServiceMockImpl implements WeatherService {
 
     private String readFile() throws IOException {
         return new String(Files.readAllBytes(
-                Path.of("src/test/resources/expected-response/get-weather-details.json")));
+                Path.of("src/test/resources/open-weather-map-response/get-weather-by-city-name-success.json")));
     }
 
 }
