@@ -1,0 +1,8 @@
+{
+  "id": 101,
+  "createDate": "2021-02-10T21:03:24.064+00:00",
+  "updateDate": "2021-02-10T21:03:24.064+00:00",
+  "departureLocation": "testDepartureLocation",
+  "destinationLocation": "testDestinationLocation",
+  "flightPrice": 125
+}

@@ -1,0 +1,31 @@
+logging:
+  level:
+    root: info
+
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: password
+    url: jdbc:postgresql://localhost:5432/airline_tickets_system
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        show_sql: true
+        use_sql_comments: true
+
+open-weather-map:
+  use-mock: true
+  x-rapidapi-key: 5203b77f0emsha535f088ddf7d79p1f4773jsn935a1e67f4fb
+  x-rapidapi-host: community-open-weather-map.p.rapidapi.com
+  search-weather-data-url: https://community-open-weather-map.p.rapidapi.com/find?q=%s&units=metric
+
+
+
