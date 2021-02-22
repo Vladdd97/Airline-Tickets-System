@@ -3,10 +3,9 @@ package com.airiline.tickets.service.impl;
 import com.airiline.tickets.service.WeatherService;
 import com.airiline.tickets.weatherapi.dto.SearchWeatherDataResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -15,7 +14,7 @@ import java.nio.file.Path;
 
 @Slf4j
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 @ConditionalOnProperty(prefix = "open-weather-map", name = "use-mock", havingValue = "true")
 public class WeatherServiceMockImpl implements WeatherService {
 
@@ -23,7 +22,7 @@ public class WeatherServiceMockImpl implements WeatherService {
 
     @Override
     public SearchWeatherDataResponse getWeatherByCityName(String cityName) {
-        log.info("Using WeatherServiceMockImpl in order to simulate a call to Open Weather Map API");
+        log.info("Using WeatherServiceMockImpl in order to simulate a call to Open Weather Map API for [{}] city", cityName);
         SearchWeatherDataResponse result = null;
         try {
             result = objectMapper.readValue(readFile(), SearchWeatherDataResponse.class);
@@ -34,7 +33,8 @@ public class WeatherServiceMockImpl implements WeatherService {
     }
 
     private String readFile() throws IOException {
-        return new String(Files.readAllBytes(Path.of("src/test/resources/expected-response/get-weather-details.json")));
+        return new String(Files.readAllBytes(
+                Path.of("src/test/resources/expected-response/get-weather-details.json")));
     }
 
 }

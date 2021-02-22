@@ -20,8 +20,6 @@ public class TicketController {
 
     private final TicketService ticketService;
 
-    private final WeatherService weatherService;
-
     @PostMapping
     public ResponseEntity<CreateTicketResponse> save(@RequestBody CreateTicketRequest ticket) {
         return ResponseEntity.status(HttpStatus.CREATED).body(ticketService.save(ticket));
@@ -43,8 +41,4 @@ public class TicketController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping("/test-weather/{city}")
-    public ResponseEntity<SearchWeatherDataResponse> testWeather(@PathVariable String city) {
-        return ResponseEntity.status(HttpStatus.OK).body(weatherService.getWeatherByCityName(city));
-    }
 }
