@@ -1,4 +1,4 @@
-package com.airiline.tickets.weatherapi.dto;
+package com.airiline.tickets.client.openweathermap.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

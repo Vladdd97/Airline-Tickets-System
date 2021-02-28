@@ -1,13 +1,13 @@
-package com.airiline.tickets.weatherapi;
+package com.airiline.tickets.client.openweathermap;
 
-import com.airiline.tickets.weatherapi.config.OpenWeatherMapServiceConfig;
-import com.airiline.tickets.weatherapi.dto.SearchWeatherDataResponse;
+import com.airiline.tickets.client.openweathermap.configuration.OpenWeatherMapServiceConfig;
+import com.airiline.tickets.client.openweathermap.dto.SearchWeatherDataResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import static com.airiline.tickets.weatherapi.config.OpenWeatherMapRestTemplateConfig.OPEN_WEATHER_MAP_REST_TEMPLATE_BEAN;
+import static com.airiline.tickets.client.openweathermap.configuration.OpenWeatherMapRestTemplateConfiguration.OPEN_WEATHER_MAP_REST_TEMPLATE_BEAN;
 
 @Slf4j
 @Component

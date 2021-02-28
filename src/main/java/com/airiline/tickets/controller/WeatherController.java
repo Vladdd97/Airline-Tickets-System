@@ -1,7 +1,7 @@
 package com.airiline.tickets.controller;
 
 import com.airiline.tickets.service.WeatherService;
-import com.airiline.tickets.weatherapi.dto.SearchWeatherDataResponse;
+import com.airiline.tickets.client.openweathermap.dto.SearchWeatherDataResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

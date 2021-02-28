@@ -1,6 +1,6 @@
-package com.airiline.tickets.weatherapi.config;
+package com.airiline.tickets.client.openweathermap.configuration;
 
-import com.airiline.tickets.weatherapi.config.interceptor.RapidApiInterceptor;
+import com.airiline.tickets.client.openweathermap.configuration.interceptor.RapidApiInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @RequiredArgsConstructor
-public class OpenWeatherMapRestTemplateConfig {
+public class OpenWeatherMapRestTemplateConfiguration {
 
     public static final String OPEN_WEATHER_MAP_REST_TEMPLATE_BEAN = "openWeatherMapRestTemplate";
 

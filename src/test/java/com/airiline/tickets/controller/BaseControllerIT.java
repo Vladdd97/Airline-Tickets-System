@@ -1,8 +1,7 @@
 package com.airiline.tickets.controller;
 
-import com.airiline.tickets.weatherapi.config.OpenWeatherMapRestTemplateConfig;
+import com.airiline.tickets.client.openweathermap.configuration.OpenWeatherMapRestTemplateConfiguration;
 import lombok.val;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public abstract class BaseControllerIT {
 
     protected MockRestServiceServer mockOpenWeatherMapServer;
 
-    @Qualifier(OpenWeatherMapRestTemplateConfig.OPEN_WEATHER_MAP_REST_TEMPLATE_BEAN)
+    @Qualifier(OpenWeatherMapRestTemplateConfiguration.OPEN_WEATHER_MAP_REST_TEMPLATE_BEAN)
     @Autowired
     private RestTemplate openWeatherMapRestTemplate;
 

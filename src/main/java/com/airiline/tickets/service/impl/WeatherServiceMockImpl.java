@@ -1,7 +1,7 @@
 package com.airiline.tickets.service.impl;
 
 import com.airiline.tickets.service.WeatherService;
-import com.airiline.tickets.weatherapi.dto.SearchWeatherDataResponse;
+import com.airiline.tickets.client.openweathermap.dto.SearchWeatherDataResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
