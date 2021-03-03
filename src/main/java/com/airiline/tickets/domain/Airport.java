@@ -1,6 +1,6 @@
 package com.airiline.tickets.domain;
 
-import com.airiline.tickets.utility.enums.City;
+import com.airiline.tickets.domain.common.enums.City;
 import lombok.*;
 
 import javax.persistence.Entity;
