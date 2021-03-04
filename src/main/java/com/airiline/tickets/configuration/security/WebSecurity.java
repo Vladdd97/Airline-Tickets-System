@@ -36,14 +36,16 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                         "/webjars/**",
                         "favicon.ico"
                 ).permitAll()
-                .antMatchers("/liveness").permitAll()
+                .antMatchers("/liveness",
+                        AuthController.AUTH_URL + "/**"
+                ).permitAll()
                 .antMatchers(
                         "/v1/ats/tickets/**",
-                        "/v1/ats/flights/**",
-                        AuthController.AUTH_URL + "/**")
-                .permitAll()
-//                .hasRole("ADMIN")
-//                .anyRequest().authenticated()
+                        "/v1/ats/flights/**"
+                )
+                //.permitAll()
+                .hasRole("ADMIN")
+                .anyRequest().authenticated()
                 .and().exceptionHandling()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

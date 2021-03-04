@@ -31,5 +31,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .token(jwt)
                 .username(userDetails.getUsername())
                 .authorities(userDetails.getAuthorities())
-                .build();    }
+                .build();
+    }
 }
