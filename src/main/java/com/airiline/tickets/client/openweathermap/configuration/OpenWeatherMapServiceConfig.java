@@ -1,4 +1,4 @@
-package com.airiline.tickets.weatherapi.config;
+package com.airiline.tickets.client.openweathermap.configuration;
 
 import lombok.Getter;
 import lombok.Setter;

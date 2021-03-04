@@ -1,8 +1,7 @@
-package com.airiline.tickets.weatherapi.dto;
+package com.airiline.tickets.client.openweathermap.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.List;
 

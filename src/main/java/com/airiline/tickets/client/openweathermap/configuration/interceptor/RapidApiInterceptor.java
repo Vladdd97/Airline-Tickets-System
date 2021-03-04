@@ -1,6 +1,6 @@
-package com.airiline.tickets.weatherapi.config.interceptor;
+package com.airiline.tickets.client.openweathermap.configuration.interceptor;
 
-import com.airiline.tickets.weatherapi.config.OpenWeatherMapServiceConfig;
+import com.airiline.tickets.client.openweathermap.configuration.OpenWeatherMapServiceConfig;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
