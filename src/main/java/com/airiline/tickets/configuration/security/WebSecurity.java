@@ -1,5 +1,6 @@
 package com.airiline.tickets.configuration.security;
 
+import com.airiline.tickets.controller.AuthController;
 import com.airiline.tickets.service.impl.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -13,9 +14,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
 @EnableWebSecurity
@@ -41,7 +39,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/liveness").permitAll()
                 .antMatchers(
                         "/v1/ats/tickets/**",
-                        "/v1/ats/flights/**")
+                        "/v1/ats/flights/**",
+                        AuthController.AUTH_URL + "/**")
                 .permitAll()
 //                .hasRole("ADMIN")
 //                .anyRequest().authenticated()
