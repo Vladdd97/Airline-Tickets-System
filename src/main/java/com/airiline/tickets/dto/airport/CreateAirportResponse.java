@@ -1,6 +1,6 @@
 package com.airiline.tickets.dto.airport;
 
-import com.airiline.tickets.utility.enums.City;
+import com.airiline.tickets.domain.common.enums.City;
 import lombok.Getter;
 import lombok.Setter;
 

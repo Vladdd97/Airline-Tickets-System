@@ -41,7 +41,8 @@ public class FlightServiceImpl implements FlightService {
         return FlightMapper.INSTANCE.flightToFlightResponse(flightRepository.save(flight));
     }
 
-    private Flight findById(Long id) {
+    @Override
+    public Flight findById(Long id) {
         return flightRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Flight not found by id: " + id));
     }

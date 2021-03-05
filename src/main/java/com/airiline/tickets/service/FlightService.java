@@ -1,5 +1,6 @@
 package com.airiline.tickets.service;
 
+import com.airiline.tickets.domain.Flight;
 import com.airiline.tickets.dto.flight.CreateFlightRequest;
 import com.airiline.tickets.dto.flight.CreateFlightResponse;
 import com.airiline.tickets.dto.flight.FlightResponse;
@@ -13,4 +14,6 @@ public interface FlightService {
     void deleteById(Long id);
 
     FlightResponse update(Long flightId, UpdateFlightRequest flightRequest);
+
+    Flight findById(Long flightId);
 }

@@ -1,5 +1,7 @@
 package com.airiline.tickets.dto.ticket;
 
+import com.airiline.tickets.domain.common.enums.TicketStatus;
+import com.airiline.tickets.domain.common.enums.TravelClass;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +14,8 @@ public class TicketResponse {
     private Long id;
     private Date createDate;
     private Date updateDate;
-    private String departureLocation;
-    private String destinationLocation;
-    private BigDecimal flightPrice;
+    private BigDecimal price;
+    private String seatNumber;
+    private TravelClass travelClass;
+    private TicketStatus status;
 }
