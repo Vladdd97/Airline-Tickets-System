@@ -3,8 +3,7 @@ package com.airiline.tickets.domain;
 import com.airiline.tickets.domain.common.enums.City;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -16,5 +15,7 @@ import javax.persistence.Table;
 public class Airport extends AbstractEntity{
     private String code;
     private String name;
+
+    @Enumerated(EnumType.STRING)
     private City city;
 }

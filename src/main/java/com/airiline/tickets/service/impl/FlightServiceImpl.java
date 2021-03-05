@@ -8,6 +8,7 @@ import com.airiline.tickets.dto.flight.UpdateFlightRequest;
 import com.airiline.tickets.exception.EntityNotFoundException;
 import com.airiline.tickets.mapper.FlightMapper;
 import com.airiline.tickets.repository.FlightRepository;
+import com.airiline.tickets.service.AirportService;
 import com.airiline.tickets.service.FlightService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,11 +16,20 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class FlightServiceImpl implements FlightService {
+    private final AirportService airportService;
+
     private final FlightRepository flightRepository;
 
     @Override
     public CreateFlightResponse save(CreateFlightRequest flightRequest){
         var flight = FlightMapper.INSTANCE.createFlightRequestToFlight(flightRequest);
+
+        var departureAirport = airportService.findById(flightRequest.getDepartureAirportId());
+        flight.setDepartureAirport(departureAirport);
+
+        var arrivalAirport = airportService.findById(flightRequest.getArrivalAirportId());
+        flight.setArrivalAirport(arrivalAirport);
+
         return FlightMapper.INSTANCE.flightToCreateFlightResponse(flightRepository.save(flight));
     }
 

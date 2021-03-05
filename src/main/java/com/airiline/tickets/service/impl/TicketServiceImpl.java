@@ -1,6 +1,7 @@
 package com.airiline.tickets.service.impl;
 
 import com.airiline.tickets.domain.Ticket;
+import com.airiline.tickets.domain.common.enums.TicketStatus;
 import com.airiline.tickets.dto.ticket.CreateTicketRequest;
 import com.airiline.tickets.dto.ticket.CreateTicketResponse;
 import com.airiline.tickets.dto.ticket.TicketResponse;
@@ -23,9 +24,10 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public CreateTicketResponse save(CreateTicketRequest ticketRequest) {
         var ticket = TicketMapper.INSTANCE.createTicketRequestToTicket(ticketRequest);
+        ticket.setStatus(TicketStatus.AVAILABLE);
 
         var flight = flightService.findById(ticketRequest.getFlighId());
-        flight.getTickets().add(ticket);
+        flight.addTicket(ticket);
 
         return TicketMapper.INSTANCE.ticketToCreateTicketResponse(ticketRepository.save(ticket));
     }

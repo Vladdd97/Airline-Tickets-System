@@ -41,7 +41,8 @@ public class AirportServiceImpl implements AirportService {
         return AirportMapper.INSTANCE.airportToAirportResponse(airportRepository.save(airport));
     }
 
-    private Airport findById(Long airportId){
+    @Override
+    public Airport findById(Long airportId){
         return airportRepository.findById(airportId)
                 .orElseThrow(() -> new EntityNotFoundException("Airport not found by id: " + airportId));
     }

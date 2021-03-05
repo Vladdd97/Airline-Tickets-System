@@ -8,6 +8,7 @@ import lombok.Getter;
 @Getter
 public enum City {
     TIRANA("Tirana"),
+    ANDORRA_LA_VELLA("Andorra la Vella"),
     YEREVAN("Yerevan"),
     VIENNA("Vienna"),
     BAKU("Baku"),
@@ -29,6 +30,7 @@ public enum City {
     REYKJAVIK("Reykjavik"),
     DUBLIN("Dublin"),
     ROME("Rome"),
+    NUR_SULTAN("Nur-Sultan"),
     PRISTINA("Pristina"),
     RIGA("Riga"),
     VADUZ("Vaduz"),
@@ -45,6 +47,7 @@ public enum City {
     LISBON("Lisbon"),
     BUCHAREST("Bucharest"),
     MOSCOW("Moscow"),
+    SAN_MARINO("San Marino"),
     BELGRADE("Belgrade"),
     BRATISLAVA("Bratislava"),
     LJUBLJANA("Ljubljana"),
@@ -53,8 +56,9 @@ public enum City {
     BERN("Bern"),
     ANKARA("Ankara"),
     KYIV("Kyiv"),
-    LONDON("London");
+    LONDON("London"),
+    VATICAN_CITY("Vatican City");
 
     @JsonValue
-    private String label;
+    private final String label;
 }

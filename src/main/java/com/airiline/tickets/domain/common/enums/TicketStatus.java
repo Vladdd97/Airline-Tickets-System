@@ -12,5 +12,5 @@ public enum TicketStatus {
     PURCHASED("Purchased");
 
     @JsonValue
-    private String label;
+    private final String label;
 }

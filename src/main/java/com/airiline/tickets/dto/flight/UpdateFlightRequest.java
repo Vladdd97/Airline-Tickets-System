@@ -9,8 +9,6 @@ import java.util.Date;
 @Setter
 public class UpdateFlightRequest {
     private String number;
-    private String departureLocation;
-    private String arrivalLocation;
     private Date departureDate;
     private Date arrivalDate;
 }

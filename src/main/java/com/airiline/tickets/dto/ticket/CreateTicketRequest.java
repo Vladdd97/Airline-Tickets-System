@@ -1,6 +1,5 @@
 package com.airiline.tickets.dto.ticket;
 
-import com.airiline.tickets.domain.common.enums.TicketStatus;
 import com.airiline.tickets.domain.common.enums.TravelClass;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +12,6 @@ public class CreateTicketRequest {
     private BigDecimal price;
     private String seatNumber;
     private TravelClass travelClass;
-    private TicketStatus status;
 
     private Long flighId;
 }

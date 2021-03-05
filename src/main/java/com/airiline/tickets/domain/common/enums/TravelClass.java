@@ -12,5 +12,5 @@ public enum TravelClass {
     ECONOMY("Economy");
 
     @JsonValue
-    private String label;
+    private final String label;
 }
