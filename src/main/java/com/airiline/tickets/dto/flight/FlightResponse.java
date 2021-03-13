@@ -12,8 +12,6 @@ public class FlightResponse {
     private Date createDate;
     private Date updateDate;
     private String number;
-    private String departureLocation;
-    private String arrivalLocation;
     private Date departureDate;
     private Date arrivalDate;
 }
