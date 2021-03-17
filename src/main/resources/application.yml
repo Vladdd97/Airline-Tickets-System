@@ -31,5 +31,8 @@ open-weather-map:
   x-rapidapi-host: community-open-weather-map.p.rapidapi.com
   search-weather-data-url: https://community-open-weather-map.p.rapidapi.com/find?q=%s&units=metric
 
+job:
+  clear-weather-cache:
+    cron-expresion: 0 0 0/5 ? * * *      # every 5 h
 
 
