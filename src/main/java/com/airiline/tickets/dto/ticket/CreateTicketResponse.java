@@ -1,5 +1,7 @@
 package com.airiline.tickets.dto.ticket;
 
+import com.airiline.tickets.domain.common.enums.TicketStatus;
+import com.airiline.tickets.domain.common.enums.TravelClass;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +11,8 @@ import java.math.BigDecimal;
 @Setter
 public class CreateTicketResponse {
     private Long id;
-    private String departureLocation;
-    private String destinationLocation;
-    private BigDecimal flightPrice;
+    private BigDecimal price;
+    private String seatNumber;
+    private TravelClass travelClass;
+    private TicketStatus status;
 }

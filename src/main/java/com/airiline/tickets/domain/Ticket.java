@@ -1,14 +1,15 @@
 package com.airiline.tickets.domain;
 
 
+import com.airiline.tickets.domain.common.enums.TicketStatus;
+import com.airiline.tickets.domain.common.enums.TravelClass;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @EqualsAndHashCode(callSuper = true)
@@ -19,9 +20,12 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "tickets")
 public class Ticket extends AbstractEntity {
+    private BigDecimal price;
+    private String seatNumber;
 
-    private String departureLocation;
-    private String destinationLocation;
-    private BigDecimal flightPrice;
+    @Enumerated(EnumType.STRING)
+    private TravelClass travelClass;
 
+    @Enumerated(EnumType.STRING)
+    private TicketStatus status;
 }

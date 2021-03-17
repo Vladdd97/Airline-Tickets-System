@@ -9,8 +9,9 @@ import java.util.Date;
 @Setter
 public class CreateFlightRequest {
     private String number;
-    private String departureLocation;
-    private String arrivalLocation;
     private Date departureDate;
     private Date arrivalDate;
+
+    private Long departureAirportId;
+    private Long arrivalAirportId;
 }
