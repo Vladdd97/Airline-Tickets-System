@@ -33,6 +33,6 @@ open-weather-map:
 
 job:
   clear-weather-cache:
-    cron-expresion: 0 0 0/5 ? * * *      # every 5 h
+    cron-expresion: 0 0 */8 ? * *     # every 8 h
 
 
