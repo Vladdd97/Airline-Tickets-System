@@ -1,19 +1,21 @@
 package com.airiline.tickets.controller;
 
-import com.airiline.tickets.dto.ticket.CreateTicketRequest;
-import com.airiline.tickets.dto.ticket.CreateTicketResponse;
-import com.airiline.tickets.dto.ticket.TicketResponse;
-import com.airiline.tickets.dto.ticket.UpdateTicketRequest;
+import com.airiline.tickets.dto.ticket.*;
 import com.airiline.tickets.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1/ats/tickets")
+@RequestMapping(TicketController.TICKET_URL)
 public class TicketController {
+
+    public static final String TICKET_URL = "/v1/ats/tickets";
+    public static final String SEARCH_URL = "/search";
 
     private final TicketService ticketService;
 
@@ -36,5 +38,10 @@ public class TicketController {
     public ResponseEntity<Void> delete(@PathVariable Long ticketId) {
         ticketService.deleteById(ticketId);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping(SEARCH_URL)
+    public ResponseEntity<List<TicketResponse>> search(@RequestBody SearchTicketRequest searchTicketRequest) {
+        return ResponseEntity.ok(ticketService.searchByCriteria(searchTicketRequest));
     }
 }
