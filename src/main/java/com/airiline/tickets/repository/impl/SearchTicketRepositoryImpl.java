@@ -1,6 +1,7 @@
 package com.airiline.tickets.repository.impl;
 
 import com.airiline.tickets.domain.Ticket;
+import com.airiline.tickets.dto.PageResponse;
 import com.airiline.tickets.dto.ticket.SearchTicketRequest;
 import com.airiline.tickets.repository.SearchTicketRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,9 @@ public class SearchTicketRepositoryImpl implements SearchTicketRepository {
     private final EntityManager em;
 
     @Override
-    public List<Ticket> searchByCriteria(SearchTicketRequest searchTicketRequest) {
+    public PageResponse<Ticket> searchByCriteria(SearchTicketRequest searchTicketRequest, int page, int size) {
+        var offset = page * size;
+        var limit = offset + size;
         var criteriaBuilder = em.getCriteriaBuilder();
         var criteriaQuery = criteriaBuilder.createQuery(Ticket.class);
         var root = criteriaQuery.from(Ticket.class);
@@ -29,8 +32,20 @@ public class SearchTicketRepositoryImpl implements SearchTicketRepository {
 
         criteriaQuery.where(predicates.toArray(new Predicate[0]));
         TypedQuery<Ticket> ticketTypedQuery = em.createQuery(criteriaQuery);
+        ticketTypedQuery.setFirstResult(offset);
+        ticketTypedQuery.setMaxResults(limit);
 
-        return ticketTypedQuery.getResultList();
+        return new PageResponse<>(page, size,
+                count(searchTicketRequest, criteriaBuilder, predicates), ticketTypedQuery.getResultList());
+    }
+
+    private long count(SearchTicketRequest searchTicketRequest, CriteriaBuilder criteriaBuilder, List<Predicate> predicates) {
+        var countQuery = criteriaBuilder.createQuery(Long.class);
+        var root = countQuery.from(Ticket.class);
+
+        countQuery.select(criteriaBuilder.count(root)).where(predicates.toArray(new Predicate[0]));
+
+        return em.createQuery(countQuery).getSingleResult();
     }
 
 
@@ -49,7 +64,6 @@ public class SearchTicketRepositoryImpl implements SearchTicketRepository {
 
         if (searchTicketRequest.getStatus() != null)
             predicates.add(criteriaBuilder.equal(ticketRoot.get("status"), searchTicketRequest.getStatus()));
-
 
         return predicates;
     }
