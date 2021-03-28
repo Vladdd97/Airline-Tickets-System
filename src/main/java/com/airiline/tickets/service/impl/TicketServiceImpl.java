@@ -2,6 +2,7 @@ package com.airiline.tickets.service.impl;
 
 import com.airiline.tickets.domain.Ticket;
 import com.airiline.tickets.domain.common.enums.TicketStatus;
+import com.airiline.tickets.dto.PageResponse;
 import com.airiline.tickets.dto.ticket.*;
 import com.airiline.tickets.exception.EntityNotFoundException;
 import com.airiline.tickets.mapper.TicketMapper;
@@ -11,7 +12,6 @@ import com.airiline.tickets.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -56,10 +56,11 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public List<TicketResponse> searchByCriteria(SearchTicketRequest searchTicketRequest) {
-        var tickets = ticketRepository.searchByCriteria(searchTicketRequest);
-        return tickets.stream()
+    public PageResponse<TicketResponse> searchByCriteria(SearchTicketRequest searchTicketRequest, int page, int size) {
+        var pageResponse = ticketRepository.searchByCriteria(searchTicketRequest, page, size);
+        var tickets = pageResponse.getContent().stream()
                 .map(TicketMapper.INSTANCE::ticketToTicketResponse)
                 .collect(Collectors.toList());
+        return PageResponse.createPageResponse(pageResponse, tickets);
     }
 }

@@ -1,13 +1,12 @@
 package com.airiline.tickets.controller;
 
+import com.airiline.tickets.dto.PageResponse;
 import com.airiline.tickets.dto.ticket.*;
 import com.airiline.tickets.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -41,7 +40,8 @@ public class TicketController {
     }
 
     @PostMapping(SEARCH_URL)
-    public ResponseEntity<List<TicketResponse>> search(@RequestBody SearchTicketRequest searchTicketRequest) {
-        return ResponseEntity.ok(ticketService.searchByCriteria(searchTicketRequest));
+    public ResponseEntity<PageResponse<TicketResponse>> search(@RequestBody SearchTicketRequest searchTicketRequest,
+                                                               @RequestParam int page, @RequestParam int size) {
+        return ResponseEntity.ok(ticketService.searchByCriteria(searchTicketRequest, page, size));
     }
 }
