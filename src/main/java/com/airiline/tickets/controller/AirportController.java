@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("v1/ats/airports")
+@RequestMapping(AirportController.AIRPORT_URL)
 public class AirportController {
+    public static final String AIRPORT_URL = "/v1/ats/airports";
+
     private final AirportService airportService;
 
     @PostMapping
