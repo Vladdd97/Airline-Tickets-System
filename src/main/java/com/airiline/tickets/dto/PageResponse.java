@@ -2,6 +2,7 @@ package com.airiline.tickets.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -26,8 +27,8 @@ public class PageResponse<T> {
         this.last = (long) (pageNumber + 1) * pageSize >= totalElements;
     }
 
-    public PageResponse(int pageNumber, int pageSize, int numberOfElements, long totalElements,
-                        boolean first, boolean last, List<T> content) {
+    private PageResponse(int pageNumber, int pageSize, int numberOfElements, long totalElements,
+                         boolean first, boolean last, List<T> content) {
         this.pageNumber = pageNumber;
         this.pageSize = pageSize;
         this.numberOfElements = numberOfElements;
@@ -42,5 +43,12 @@ public class PageResponse<T> {
         return new PageResponse<>(fromPageResponse.getPageNumber(), fromPageResponse.getPageSize(),
                 fromPageResponse.getNumberOfElements(), fromPageResponse.getTotalElements(),
                 fromPageResponse.isFirst(), fromPageResponse.isLast(), newContent);
+    }
+
+    public static <T, V> PageResponse<V> createPageResponse(Page<T> fromPage, List<V> newContent) {
+
+        return new PageResponse<>(fromPage.getPageable().getPageNumber(), fromPage.getPageable().getPageSize(),
+                fromPage.getNumberOfElements(), fromPage.getTotalElements(),
+                fromPage.isFirst(), fromPage.isLast(), newContent);
     }
 }
