@@ -50,11 +50,6 @@ public class TicketServiceImpl implements TicketService {
         ticketRepository.delete(findById(id));
     }
 
-    private Ticket findById(Long id) {
-        return ticketRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Ticket not found by id: " + id));
-    }
-
     @Override
     public PageResponse<TicketResponse> searchByCriteria(SearchTicketRequest searchTicketRequest, int page, int size) {
         var pageResponse = ticketRepository.searchByCriteria(searchTicketRequest, page, size);
@@ -62,5 +57,10 @@ public class TicketServiceImpl implements TicketService {
                 .map(TicketMapper.INSTANCE::ticketToTicketResponse)
                 .collect(Collectors.toList());
         return PageResponse.createPageResponse(pageResponse, tickets);
+    }
+
+    private Ticket findById(Long id) {
+        return ticketRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Ticket not found by id: " + id));
     }
 }

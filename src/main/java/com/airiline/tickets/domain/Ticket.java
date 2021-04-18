@@ -28,4 +28,8 @@ public class Ticket extends AbstractEntity {
 
     @Enumerated(EnumType.STRING)
     private TicketStatus status;
+
+    @OneToOne()
+    @JoinColumn(name = "passenger_id", referencedColumnName = "id")
+    private Passenger passenger;
 }
