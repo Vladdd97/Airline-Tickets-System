@@ -20,7 +20,7 @@ spring:
         format_sql: true
         show_sql: true
         use_sql_comments: true
-  #email configurations
+  #Email configurations
   mail:
     host: smtp.gmail.com
     username: app.under.development@gmail.com
@@ -32,6 +32,12 @@ spring:
           auth: true
           starttls:
             enable: true
+  #RabbitMQ config
+  rabbitmq:
+    host: localhost
+    password: guest
+    port: 5672
+    username: guest
 
 jwt:
   secret-key: 6A576E5A7234753778214125442A472D4B614E645267556B58703273357638792F423F4528482B4D6251655368566D597133743677397A24432646294A404E63
@@ -47,4 +53,8 @@ job:
   clear-weather-cache:
     cron-expresion: 0 0 */8 ? * *     # every 8 h
 
-
+# Exchange + Queue config
+event:
+  notification-exchange: notification.exchange
+  email-queue: email.queue
+  notification-email-routing-key: notification.email.routingkey
