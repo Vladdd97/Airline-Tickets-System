@@ -1,17 +1,18 @@
 package com.airiline.tickets.service.impl;
 
 import com.airiline.tickets.domain.Flight;
-import com.airiline.tickets.dto.flight.CreateFlightRequest;
-import com.airiline.tickets.dto.flight.CreateFlightResponse;
-import com.airiline.tickets.dto.flight.FlightResponse;
-import com.airiline.tickets.dto.flight.UpdateFlightRequest;
+import com.airiline.tickets.dto.PageResponse;
+import com.airiline.tickets.dto.flight.*;
 import com.airiline.tickets.exception.EntityNotFoundException;
 import com.airiline.tickets.mapper.FlightMapper;
 import com.airiline.tickets.repository.FlightRepository;
 import com.airiline.tickets.service.AirportService;
 import com.airiline.tickets.service.FlightService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +22,7 @@ public class FlightServiceImpl implements FlightService {
     private final FlightRepository flightRepository;
 
     @Override
-    public CreateFlightResponse save(CreateFlightRequest flightRequest){
+    public CreateFlightResponse save(CreateFlightRequest flightRequest) {
         var flight = FlightMapper.INSTANCE.createFlightRequestToFlight(flightRequest);
 
         setFlightAirports(flight, flightRequest.getDepartureAirportId(), flightRequest.getArrivalAirportId());
@@ -53,6 +54,18 @@ public class FlightServiceImpl implements FlightService {
     public Flight findById(Long id) {
         return flightRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Flight not found by id: " + id));
+    }
+
+    @Override
+    public PageResponse<FlightResponse> searchByCriteria(SearchFlightRequest searchFlightRequest,
+                                                         Pageable pageable) {
+        var pageResponse = flightRepository.searchByCriteria(searchFlightRequest,
+                pageable.getPageNumber(), pageable.getPageSize());
+        var flights = pageResponse.getContent().stream()
+                .map(FlightMapper.INSTANCE::flightToFlightResponse)
+                .collect(Collectors.toList());
+
+        return PageResponse.createPageResponse(pageResponse, flights);
     }
 
     private void setFlightAirports(Flight flight, long departureAirportId, long arrivalAirportId) {
