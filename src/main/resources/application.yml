@@ -24,7 +24,7 @@ spring:
   mail:
     host: smtp.gmail.com
     username: app.under.development@gmail.com
-    password: ${APP_EMAIL_PASSWORD:password}
+    password: ${APP_EMAIL_PASSWORD:ztqrbpokkijbgywb}
     port: 587
     properties:
       mail:
@@ -35,9 +35,9 @@ spring:
   #RabbitMQ config
   rabbitmq:
     host: localhost
-    password: guest
     port: 5672
     username: guest
+    password: guest
 
 jwt:
   secret-key: 6A576E5A7234753778214125442A472D4B614E645267556B58703273357638792F423F4528482B4D6251655368566D597133743677397A24432646294A404E63
