@@ -24,11 +24,7 @@ public class FlightServiceImpl implements FlightService {
     public CreateFlightResponse save(CreateFlightRequest flightRequest){
         var flight = FlightMapper.INSTANCE.createFlightRequestToFlight(flightRequest);
 
-        var departureAirport = airportService.findById(flightRequest.getDepartureAirportId());
-        flight.setDepartureAirport(departureAirport);
-
-        var arrivalAirport = airportService.findById(flightRequest.getArrivalAirportId());
-        flight.setArrivalAirport(arrivalAirport);
+        setFlightAirports(flight, flightRequest.getDepartureAirportId(), flightRequest.getArrivalAirportId());
 
         return FlightMapper.INSTANCE.flightToCreateFlightResponse(flightRepository.save(flight));
     }
@@ -48,6 +44,8 @@ public class FlightServiceImpl implements FlightService {
         var flight = findById(flightId);
         FlightMapper.INSTANCE.updateFlightFromUpdateFlightRequest(flightRequest, flight);
 
+        setFlightAirports(flight, flightRequest.getDepartureAirportId(), flightRequest.getArrivalAirportId());
+
         return FlightMapper.INSTANCE.flightToFlightResponse(flightRepository.save(flight));
     }
 
@@ -55,5 +53,13 @@ public class FlightServiceImpl implements FlightService {
     public Flight findById(Long id) {
         return flightRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Flight not found by id: " + id));
+    }
+
+    private void setFlightAirports(Flight flight, long departureAirportId, long arrivalAirportId) {
+        var departureAirport = airportService.findById(departureAirportId);
+        flight.setDepartureAirport(departureAirport);
+
+        var arrivalAirport = airportService.findById(arrivalAirportId);
+        flight.setArrivalAirport(arrivalAirport);
     }
 }

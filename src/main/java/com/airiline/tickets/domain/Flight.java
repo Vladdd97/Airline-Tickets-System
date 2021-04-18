@@ -3,6 +3,7 @@ package com.airiline.tickets.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,9 +17,10 @@ import java.util.List;
 @Table(name = "flights")
 public class Flight extends AbstractEntity {
     private String number;
-
     private Date departureDate;
     private Date arrivalDate;
+    private short availableTickets;
+    private BigDecimal ticketPrice;
 
     @OneToOne()
     @JoinColumn(name = "departure_airport_id", referencedColumnName = "id")
