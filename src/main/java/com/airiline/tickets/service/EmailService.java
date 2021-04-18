@@ -1,5 +1,7 @@
 package com.airiline.tickets.service;
 
+import com.airiline.tickets.dto.event.EmailEvent;
+
 public interface EmailService {
-    void sendMessage(String to, String subject, String message);
+    void sendMessage(EmailEvent emailEvent);
 }

@@ -1,6 +1,5 @@
 package com.airiline.tickets.service.impl;
 
-import com.airiline.tickets.configuration.security.JwtProvider;
 import com.airiline.tickets.dto.auth.SignInResponse;
 import com.airiline.tickets.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     private final AuthenticationManager authenticationManager;
-    private final JwtProvider jwtProvider;
+    private final JwtProviderService jwtProviderService;
 
     @Override
     public SignInResponse authenticate(String username, String password) {
@@ -25,7 +24,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        String jwt = jwtProvider.generateToken(userDetails);
+        String jwt = jwtProviderService.generateToken(userDetails);
 
         return SignInResponse.builder()
                 .token(jwt)

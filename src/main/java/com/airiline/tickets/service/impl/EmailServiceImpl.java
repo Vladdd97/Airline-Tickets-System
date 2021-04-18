@@ -1,5 +1,6 @@
 package com.airiline.tickets.service.impl;
 
+import com.airiline.tickets.dto.event.EmailEvent;
 import com.airiline.tickets.service.EmailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,13 +16,13 @@ public class EmailServiceImpl implements EmailService {
     private final JavaMailSender javaMailSender;
 
     @Override
-    public void sendMessage(String to, String subject, String message) {
-        log.info("Send email to [{}] with message [{}].", to, message);
+    public void sendMessage(EmailEvent emailEvent) {
+        log.info("Send email to [{}] with message [{}].", emailEvent.getTo(), emailEvent.getMessage());
 
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setTo(to);
-        simpleMailMessage.setSubject(subject);
-        simpleMailMessage.setText(message);
+        simpleMailMessage.setTo(emailEvent.getTo());
+        simpleMailMessage.setSubject(emailEvent.getSubject());
+        simpleMailMessage.setText(emailEvent.getMessage());
         javaMailSender.send(simpleMailMessage);
     }
 }
