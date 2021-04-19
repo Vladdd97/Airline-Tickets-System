@@ -1,5 +1,6 @@
 package com.airiline.tickets.configuration.security;
 
+import com.airiline.tickets.service.impl.JwtProviderService;
 import com.airiline.tickets.service.impl.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,17 +25,16 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private final static String BEARER = "Bearer ";
 
     private final UserDetailsServiceImpl userDetailsService;
-    public final JwtProvider jwtProvider;
+    public final JwtProviderService jwtProviderService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         String jwtToken = getJwt(request);
 
-        if (jwtToken != null && jwtProvider.validateToken(jwtToken)) {
-            String username = jwtProvider.getUsername(jwtToken);
+        if (jwtToken != null && jwtProviderService.validateToken(jwtToken)) {
+            String username = jwtProviderService.getUsername(jwtToken);
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-            //TODO isEnabled check is needed???
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                     userDetails, null, userDetails.getAuthorities());
             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

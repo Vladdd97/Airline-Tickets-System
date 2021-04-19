@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1/ats/weather")
+@RequestMapping(WeatherController.WEATHER_URL)
 public class WeatherController {
+    public static final String WEATHER_URL = "/v1/ats/weather";
 
     private final WeatherService weatherService;
 

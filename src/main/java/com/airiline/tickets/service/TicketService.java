@@ -1,16 +1,12 @@
 package com.airiline.tickets.service;
 
-import com.airiline.tickets.dto.ticket.CreateTicketRequest;
-import com.airiline.tickets.dto.ticket.CreateTicketResponse;
+import com.airiline.tickets.domain.Ticket;
 import com.airiline.tickets.dto.ticket.TicketResponse;
-import com.airiline.tickets.dto.ticket.UpdateTicketRequest;
+
+import java.util.UUID;
 
 public interface TicketService {
-    CreateTicketResponse save(CreateTicketRequest ticketRequest);
+    Ticket saveEntity(Ticket ticket);
 
-    TicketResponse getById(final Long id);
-
-    TicketResponse update(UpdateTicketRequest ticketRequest, Long id);
-
-    void deleteById(Long id);
+    TicketResponse getByIdentifier(UUID id);
 }

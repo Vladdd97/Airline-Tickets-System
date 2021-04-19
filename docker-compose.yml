@@ -1,0 +1,45 @@
+version: '3.1'
+
+services:
+
+  airline_tickets_system_db:
+    image: postgres
+    container_name: airline_tickets_system_db
+    restart: on-failure
+    environment:
+      - POSTGRES_DB=airline_tickets_system
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    ports:
+      - 5434:5432
+
+  airline_tickets_system_rabbitmq:
+    image: rabbitmq:3-management
+    container_name: airline_tickets_system_rabbitmq
+    restart: on-failure
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    ports:
+      - 15672:15672
+      - 5672:5672
+
+  airline_tickets_system_app:
+    image: airline_tickets_system_app
+    build: .
+    container_name: airline_tickets_system_app
+    restart: on-failure
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://airline_tickets_system_db:5432/airline_tickets_system
+      - SPRING_RABBITMQ_HOST=airline_tickets_system_rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+    ports:
+      - 8084:8080
+    depends_on:
+      - airline_tickets_system_db
+      - airline_tickets_system_rabbitmq

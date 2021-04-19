@@ -1,5 +1,6 @@
-package com.airiline.tickets.configuration.security;
+package com.airiline.tickets.service.impl;
 
+import com.airiline.tickets.configuration.security.JwtConfig;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -13,9 +14,9 @@ import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
-public class JwtProvider {
+public class JwtProviderService {
 
-private final JwtConfig jwtConfig;
+    private final JwtConfig jwtConfig;
 
     public String getUsername(String token) {
         return extractAllClaims(token).getSubject();

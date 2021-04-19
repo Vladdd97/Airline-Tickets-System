@@ -6,10 +6,9 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum TravelClass {
-    FIRST("First"),
-    BUSINESS("Business"),
-    ECONOMY("Economy");
+public enum Title {
+    MISTER("Mister"),
+    MISS("Miss");
 
     @JsonValue
     private final String label;

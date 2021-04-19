@@ -1,13 +1,12 @@
 package com.airiline.tickets.repository;
 
-import com.airiline.tickets.domain.Ticket;
+import com.airiline.tickets.domain.Passenger;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Repository
-public interface TicketRepository extends JpaRepository<Ticket, Long> {
-    Optional<Ticket> findByIdentifier(UUID identifier);
+public interface PassengerRepository extends JpaRepository<Passenger, Long> {
+    Optional<Passenger> findByPassportNumber(String passportNumber);
 }
