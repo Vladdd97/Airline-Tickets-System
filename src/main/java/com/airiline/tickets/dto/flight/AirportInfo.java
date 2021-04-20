@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AirportInfo {
+    private Long id;
     private String code;
     private String name;
     private City city;

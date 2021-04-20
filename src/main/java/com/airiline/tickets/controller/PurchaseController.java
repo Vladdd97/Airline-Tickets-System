@@ -3,6 +3,7 @@ package com.airiline.tickets.controller;
 import com.airiline.tickets.dto.purchase.PurchaseTicketRequest;
 import com.airiline.tickets.dto.purchase.PurchaseTicketResponse;
 import com.airiline.tickets.service.PurchaseService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,8 @@ public class PurchaseController {
     private final PurchaseService purchaseService;
 
     @PostMapping
-    public ResponseEntity<PurchaseTicketResponse> purchase(@Valid @RequestBody PurchaseTicketRequest purchaseTicketRequest){
+    public ResponseEntity<PurchaseTicketResponse> purchase(@Valid @RequestBody PurchaseTicketRequest purchaseTicketRequest)
+            throws JsonProcessingException {
         return ResponseEntity.ok(purchaseService.purchaseTicket(purchaseTicketRequest));
     }
 }
