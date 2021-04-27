@@ -34,10 +34,11 @@ spring:
             enable: true
   #RabbitMQ config
   rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
+    host: ${RABBIT_MQ_HOST:localhost}
+    virtual-host: ${RABBIT_MQ_VIRTUAL_HOST:}
+    port: ${RABBIT_MQ_PORT:5672}
+    username: ${RABBIT_MQ_USERNAME:guest}
+    password: ${RABBIT_MQ_PASSWORD:guest}
 
 jwt:
   secret-key: 6A576E5A7234753778214125442A472D4B614E645267556B58703273357638792F423F4528482B4D6251655368566D597133743677397A24432646294A404E63
@@ -58,3 +59,7 @@ event:
   notification-exchange: notification.exchange
   email-queue: email.queue
   notification-email-routing-key: notification.email.routingkey
+
+ats:
+  test:
+    prop: ${ATS_TEST_PROP:noPropertyConfigured}

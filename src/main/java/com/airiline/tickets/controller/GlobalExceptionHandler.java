@@ -32,9 +32,15 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleExceptions(EntityNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(createErrorResponse(ex.getMessage()));
     }
+
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handleExceptions(InvalidFormatException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(createErrorResponse(ex.getMessage()));
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponse> handleExceptions(Exception ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(createErrorResponse(ex.getMessage()));
     }
 
     private ErrorResponse createErrorResponse(String message) {
