@@ -3,6 +3,7 @@ package com.airiline.tickets.controller;
 import com.airiline.tickets.dto.error.ErrorResponse;
 import com.airiline.tickets.dto.error.ValidationError;
 import com.airiline.tickets.exception.EntityNotFoundException;
+import com.airiline.tickets.exception.NotEnoughAvailableTicketsException;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,9 +33,21 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleExceptions(EntityNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(createErrorResponse(ex.getMessage()));
     }
+
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handleExceptions(InvalidFormatException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(createErrorResponse(ex.getMessage()));
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponse> handleExceptions(NotEnoughAvailableTicketsException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(createErrorResponse(ex.getMessage()));
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponse> handleExceptions(Exception ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(createErrorResponse(ex.getMessage()));
     }
 
     private ErrorResponse createErrorResponse(String message) {

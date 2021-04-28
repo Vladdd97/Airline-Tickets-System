@@ -1,9 +1,11 @@
 package com.airiline.tickets.service.impl;
 
+import com.airiline.tickets.domain.Flight;
 import com.airiline.tickets.domain.Ticket;
 import com.airiline.tickets.dto.event.EmailEvent;
 import com.airiline.tickets.dto.purchase.PurchaseTicketRequest;
 import com.airiline.tickets.dto.purchase.PurchaseTicketResponse;
+import com.airiline.tickets.exception.NotEnoughAvailableTicketsException;
 import com.airiline.tickets.mapper.PurchaseMapper;
 import com.airiline.tickets.service.FlightService;
 import com.airiline.tickets.service.PassengerService;
@@ -28,7 +30,7 @@ public class PurchaseServiceImpl implements PurchaseService {
     public PurchaseTicketResponse purchaseTicket(PurchaseTicketRequest purchaseTicketRequest) throws JsonProcessingException {
         var flight = flightService.findById(purchaseTicketRequest.getFlightId());
 
-        //TODO Check if there are available tickets for this flight
+        checkFlightAvailableTickets(flight);
 
         var passenger = passengerService.findByPassportNumber(purchaseTicketRequest.getPassenger()
                 .getPassportNumber()).orElseGet(() -> passengerService.saveEntity(purchaseTicketRequest.getPassenger()));
@@ -55,5 +57,11 @@ public class PurchaseServiceImpl implements PurchaseService {
         eventPublisherService.publishEmailEvent(emailEvent);
 
         return purchaseTicketResponse;
+    }
+
+    private void checkFlightAvailableTickets(Flight flight) {
+        if (flight.getAvailableTickets() < 1) {
+            throw new NotEnoughAvailableTicketsException("No available tickets for this flight");
+        }
     }
 }
