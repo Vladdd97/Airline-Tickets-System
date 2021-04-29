@@ -23,7 +23,7 @@ spring:
   #Email configurations
   mail:
     host: smtp.gmail.com
-    username: app.under.development@gmail.com
+    username: ${APP_EMAIL_USERNAME:app.under.development@gmail.com}
     password: ${APP_EMAIL_PASSWORD:ztqrbpokkijbgywb}
     port: 587
     properties:
@@ -45,14 +45,14 @@ jwt:
   expiration-time: 864000000
 
 open-weather-map:
-  use-mock: true
+  use-mock: ${OPEN_WEATHER_MAP_USE_MOCK:true}
   x-rapidapi-key: 5203b77f0emsha535f088ddf7d79p1f4773jsn935a1e67f4fb
   x-rapidapi-host: community-open-weather-map.p.rapidapi.com
   search-weather-data-url: https://community-open-weather-map.p.rapidapi.com/find?q=%s&units=metric
 
 job:
   clear-weather-cache:
-    cron-expresion: 0 0 */8 ? * *     # every 8 h
+    cron-expresion: ${CLEAR_WEATHER_CACHE_CRON_EXPRESION:0 0 */8 ? * *}     # every 8 h
 
 # Exchange + Queue config
 event:
