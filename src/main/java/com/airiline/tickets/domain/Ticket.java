@@ -22,4 +22,7 @@ public class Ticket extends AbstractEntity {
     @OneToOne()
     @JoinColumn(name = "passenger_id", referencedColumnName = "id")
     private Passenger passenger;
+
+    @ManyToOne
+    private Flight flight;
 }
