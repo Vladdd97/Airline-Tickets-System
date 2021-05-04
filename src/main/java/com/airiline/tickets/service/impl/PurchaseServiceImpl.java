@@ -15,6 +15,8 @@ import com.airiline.tickets.service.event.EventPublisherService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -27,6 +29,7 @@ public class PurchaseServiceImpl implements PurchaseService {
     private final EventPublisherService eventPublisherService;
 
     @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public PurchaseTicketResponse purchaseTicket(PurchaseTicketRequest purchaseTicketRequest) throws JsonProcessingException {
         var flight = flightService.findById(purchaseTicketRequest.getFlightId());
 

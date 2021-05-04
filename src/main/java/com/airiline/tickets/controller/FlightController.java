@@ -15,7 +15,6 @@ import springfox.documentation.annotations.ApiIgnore;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(FlightController.FLIGHT_URL)
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FlightController {
     public static final String FLIGHT_URL = "/v1/ats/flights";
     public static final String SEARCH_URL = "/search";
