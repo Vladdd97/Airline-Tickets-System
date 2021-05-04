@@ -18,7 +18,6 @@ import springfox.documentation.annotations.ApiIgnore;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(AirportController.AIRPORT_URL)
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AirportController {
     public static final String AIRPORT_URL = "/v1/ats/airports";
 
